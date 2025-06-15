@@ -1,0 +1,118 @@
+.project {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.logo-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    /* Add logo styling (e.g., image or text) */
+}
+
+.container {
+    display: flex;
+    margin-top: 60px; /* Space for fixed logo */
+}
+
+.sidebar {
+    width: 28.57%; /* 2/7 of 100% */
+    padding: 20px;
+    background: rgba(128, 128, 128, 0.5); /* Translucent grey at 50% opacity */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 5; /* Ensure sidebar is above other content */
+}
+
+.index-header {
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+    padding: 0 0 10px 0; /* Padding for header */
+}
+
+.year-col, .project-col, .tags-col {
+    display: inline-block;
+}
+
+.year-col {
+    width: 15%; /* 1/6 of total width */
+}
+
+.project-col {
+    width: 50%; /* 3/6 of total width */
+}
+
+.tags-col {
+    width: 35%; /* 2/6 of total width */
+}
+
+.project-item {
+    display: flex;
+    width: 100%;
+    margin: 10px 0;
+    cursor: pointer;
+    padding: 0 0 10px 0; /* Padding for text */
+    min-height: 30px; /* Maintain base row height */
+    transition: min-height 0.3s ease; /* Smooth height transition */
+}
+
+.project-item span {
+    display: inline-block;
+}
+
+.project-item .year-col {
+    width: 15%;
+}
+
+.project-item .project-col {
+    width: 50%;
+}
+
+.project-item .tags-col {
+    width: 35%;
+}
+
+.project-item:hover {
+    min-height: 230px; /* Expand to fit video + text */
+}
+
+.project-item .hidden-video {
+    display: none;
+    width: 100%; /* Full width of sidebar */
+    height: auto; /* Scale based on width */
+    margin-top: 10px; /* Space below text */
+}
+
+.project-item:hover .hidden-video {
+    display: block;
+}
+
+.project-item:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #000;
+    margin-top: 5px; /* Space between text/video and line */
+}
+
+/* Ensure last item doesn't have a line below */
+.project-item:last-child:after {
+    display: none;
+}
+
+.content {
+    width: 71.43%; /* 5/7 of 100% */
+    padding: 20px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.content img, .content video {
+    max-width: 100%;
+    margin: 20px 0;
+}

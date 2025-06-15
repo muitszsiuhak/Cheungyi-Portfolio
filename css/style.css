@@ -1,0 +1,276 @@
+/* Set Base Body CSS blank slate */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e0e0e0;
+}
+
+/* Three.js Canvas Element Styling */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  /* Ensure canvas is behind other elements */
+}
+
+/* Load Fonts from folder*/
+@font-face {
+  font-family: GraphikBold;
+  src: url(../fonts/Graphik-Bold.otf);
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../fonts/Graphik.otf);
+}
+
+@font-face {
+  font-family: Bookish;
+  src: url(../fonts/Bookish.otf);
+}
+
+@font-face {
+  font-family: ReplicaBold;
+  src: url(../fonts/ReplicaLL-Bold.otf);
+}
+
+@font-face {
+  font-family: Replica;
+  src: url(../fonts/ReplicaLL-Regular.otf);
+}
+
+@font-face {
+  font-family: ReplicaLight;
+  src: url(../fonts/ReplicaLL-Light.otf);
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for Internet Explorer */
+body {
+  -ms-overflow-style: none;
+}
+
+/* Google Fonts Classes */
+
+.yarndings-12-regular {
+  font-family: "Yarndings 12", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dm-mono-light {
+  font-family: "DM Mono", monospace;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.dm-mono-regular {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dm-mono-medium {
+  font-family: "DM Mono", monospace;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.contact-header {
+  position: absolute;
+  left: 55px;
+  top: 130px;
+}
+
+@media all and (max-width: 800px) {
+  .contact-header {
+    left: 30px;
+    top: 100px;
+  }
+}
+
+.contact-header h1 {
+  font-family: ReplicaLight;
+  font-size: 35px;
+  color: darkgreen;
+}
+
+
+#form {
+  position: absolute;
+  left: 40px;
+  top: 200px;
+  width: 50vw;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 5px 30px 5px 5px;
+
+}
+
+@media all and (max-width: 800px) {
+  #form {
+    left: 15px;
+    width: calc(100vw - 60px);
+    max-width: unset;
+    bottom: 20px;
+    z-index: 4;
+  }
+}
+
+input {
+  margin: 0px 0px 10px 0px;
+  border: none;
+  border-radius: 3px 15px 3px 3px;
+  font-family: ReplicaLight;
+  letter-spacing: 1px;
+  font-size: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+input:focus {
+  border: 1px dashed black;
+}
+
+textarea {
+  height: 150px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 3px;
+  padding: 20px;
+  font-family: ReplicaLight;
+  letter-spacing: 1px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  resize: none;
+  overflow: scroll;
+
+
+}
+
+button {
+  border: none;
+  width: 100px;
+  border-radius: 88px;
+  font-family: ReplicaLight;
+  letter-spacing: 1px;
+  font-size: 15px;
+  padding: 10px;
+  color: darkgreen;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-sizing: border-box;
+  border: .1px solid darkseagreen;
+  transition: .1s;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: darkgreen;
+  cursor: pointer;
+  color: white;
+}
+
+#result {
+  font-family: ReplicaLight;
+  letter-spacing: 1px;
+  font-size: 10px;
+  margin-top: 20px;
+}
+
+/* Useful, But Hard to Remember CSS Structures */
+/* ScreenSize Adjustment, Animation, Load Font, Have img Fit Inside Div */
+
+@media all and (max-width: 800px) {
+  .ExampleClass {
+    display: none;
+  }
+}
+
+.ExampleClass {
+  /* Useful css (commonly used) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  animation: name duration timing-function delay iteration-count direction fill-mode;
+  animation: AnimationName 1s ease-in infinite;
+
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
+
+  transform: translateX(50px);
+
+  mix-blend-mode: color-burn;
+
+  border: 1ps solid rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  border-width: 1px 0px 0px 0px;
+
+
+}
+
+/* You can make it simple */
+@keyframes AnimationName2 {
+
+  0% {
+    width: 10px;
+  }
+
+  100% {
+    width: 50px;
+  }
+
+}
+
+/* You can add more breakpoints with percentages for more keyframes */
+@keyframes AnimationName {
+
+  0% {
+    font-size: 0px;
+  }
+
+  50% {
+    font-size: 15px;
+  }
+
+  100% {
+    font-size: 10px;
+  }
+
+}
+
+/* Font Loader from local files */
+@font-face {
+  font-family: FontName;
+  src: url(../fonts/Fontname.otf);
+}
+
+/* This image css always fills the div it is inside/scales the image and doesnt overflow */
+.ExampleClass img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
