@@ -1,85 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!--                         
-     
-  SCI-ARC FICTION & ENTERTAINMENT WEB WORKSHOP 25'
-  BY KYUNG HYUN ERIC JOO 2025 @metroboolean
-
-  -->
-
 <head>
-
-    <!-- Change Title of Website near Favicon -->
-    <title>F&E Web Workshop Template</title>
-
-    <!-- Meta Info talking to Browser -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-
-    <!-- CSS / Cascading Style Sheets loaded here -->
-    <link type="text/css" rel="stylesheet" href="./css/style.css">
-    <link type="text/css" rel="stylesheet" href="./css/archivemenu.css">
-    <link type="text/css" rel="stylesheet" href="./css/navigation.css">
-    <link type="text/css" rel="stylesheet" href="./css/widgets.css">
-    <link type="text/css" rel="stylesheet" href="./css/projects.css">
-    <link type="text/css" rel="stylesheet" href="./css/about.css">
-    <link type="text/css" rel="stylesheet" href="./css/archivetoggle.css">
-    <link type="text/css" rel="stylesheet" href="./css/hpslide.css">
-
-    <!-- Favicon on the website tab (small icon at top)-->
+    <title>CHEUNG YI: Home</title>
     <link rel="icon" type="image/png" href="./images/greendot_favicon.png">
-
-    <!-- Preloaded Javscript scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.0/lib/p5.min.js"></script>
-    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-    <!-- Google Fonts Embed -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Yarndings+12&display=swap"
-        rel="stylesheet">
-
-    <!-- Compartment Loader  -->
-    <script type="text/javascript" src="./js/partLoader.js"></script>
-    <script type="text/javascript" src="./js/archiveToggle.js"></script>
-    <script type="text/javascript" src="./js/hpslide.js"></script>
-    <script type="text/javascript" src="./js/widgets.js"></script>
-    <!-- Navigation Toggle script -->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleHOME.css">
 </head>
+<body class="landing">
+    <!-- Fixed Logo Button -->
+    <a href="about.html" class="logo-btn">
+        <img src="images\LOGO-gazpacho.png" alt="Cheung Yi Logo">
+    </a>
 
-
-<body>
-
-    <!-- Load HTML Components -->
-
-    <header class="" id="navigation"></header>
-
-    <div class="" id="widgets"></div>
-
-    <div class="" id="archivemenu"></div>
-
-    <div class="about-wrapper">
-
-        <div class="about-container">
-            <h1>Name Here</h1>
-            <h2>[Artist Name] is a visual effects artist specializing in
-                crafting immersive digital worlds and dynamic visual storytelling.
-                With a background in [film/games/advertising — pick one or more],
-                their work spans compositing, simulation, and digital environments,
-                blending technical precision with cinematic aesthetics. Passionate
-                about pushing the boundaries of visual realism and style, they use
-                industry-standard tools like Houdini, Nuke, and Unreal Engine to
-                bring complex scenes to life.</h2>
-        </div>
-
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="digital">DIGITAL</button>
+        <button class="filter-btn" data-filter="physical">PHYSICAL</button>
+        <button class="filter-btn" data-filter="exhibitions">EXHIBITIONS</button>
+        <button class="filter-btn" data-filter="writings">WRITINGS</button>
     </div>
 
+    <!-- Background Image -->
+    <div class="background-image"></div>
 
+    <!-- Card Cloud -->
+    <div class="card-cloud">
+        <!-- Project 1 Cards -->
+        <div class="card fade-in" data-category="digital physical" style="top: 10%; left: 10%;">
+            <img src="images\a.jpg" alt="Project 1 Thumb 1">
+            <span class="caption">HYBRID-01</span>
+        </div>
+        <div class="card fade-in" data-category="digital physical" style="top: 15%; left: 25%;">
+            <img src="images\b.jpg" alt="Project 1 Thumb 2">
+            <span class="caption">HYBRID-02</span>
+        </div>
+        <div class="card fade-in" data-category="digital physical" style="top: 25%; left: 15%;">
+            <img src="images\Project1_00000.png" alt="Project 1 Thumb 3">
+            <span class="caption">HYBRID-03</span>
+        </div>
+
+        <!-- Project 2 Cards -->
+        <div class="card fade-in" data-category="digital" style="top: 35%; left: 35%;">
+            <img src="image\Ruy-exhibition.jpg" alt="Project 2 Thumb 1">
+            <span class="caption">DIGITAL-01</span>
+        </div>
+        <div class="card fade-in" data-category="digital" style="top: 20%; left: 45%;">
+            <img src="images\a.jpg" alt="Project 2 Thumb 2">
+            <span class="caption">DIGITAL-02</span>
+        </div>
+        <div class="card fade-in" data-category="digital" style="top: 40%; left: 55%;">
+            <img src="images\b.jpg" alt="Project 2 Thumb 3">
+            <span class="caption">DIGITAL-03</span>
+        </div>
+
+        <!-- Project 3 Cards -->
+        <div class="card fade-in" data-category="physical" style="top: 60%; left: 20%;">
+            <img src="images\Project1_00000.png" alt="Project 3 Thumb 1">
+            <span class="caption">PHYSICAL-01</span>
+        </div>
+        <div class="card fade-in" data-category="physical" style="top: 50%; left: 10%;">
+            <img src="image\Ruy-exhibition.jpg" alt="Project 3 Thumb 2">
+            <span class="caption">PHYSICAL-02</span>
+        </div>
+        <div class="card fade-in" data-category="physical" style="top: 70%; left: 30%;">
+            <img src="images\a.jpg" alt="Project 3 Thumb 3">
+            <span class="caption">PHYSICAL-03</span>
+        </div>
+
+        <!-- Project 4 Cards -->
+        <div class="card fade-in" data-category="exhibitions" style="top: 30%; left: 70%;">
+            <img src="images\b.jpg" alt="Project 4 Thumb 1">
+            <span class="caption">EXHIBIT-01</span>
+        </div>
+        <div class="card fade-in" data-category="exhibitions" style="top: 45%; left: 75%;">
+            <img src="images\Project1_00000.png" alt="Project 4 Thumb 2">
+            <span class="caption">EXHIBIT-02</span>
+        </div>
+        <div class="card fade-in" data-category="exhibitions" style="top: 15%; left: 65%;">
+            <img src="image\Ruy-exhibition.jpg" alt="Project 4 Thumb 3">
+            <span class="caption">EXHIBIT-03</span>
+        </div>
+
+        <!-- Project 5 Cards -->
+        <div class="card fade-in" data-category="writings" style="top: 80%; left: 50%;">
+            <img src="images\a.jpg" alt="Project 5 Thumb 1">
+            <span class="caption">WRITING-01</span>
+        </div>
+        <div class="card fade-in" data-category="writings" style="top: 75%; left: 65%;">
+            <img src="images\b.jpg" alt="Project 5 Thumb 2">
+            <span class="caption">WRITING-02</span>
+        </div>
+        <div class="card fade-in" data-category="writings" style="top: 85%; left: 40%;">
+            <img src="images\Project1_00000.png" alt="Project 5 Thumb 3">
+            <span class="caption">WRITING-03</span>
+        </div>
+
+        <!-- Project 6 Cards -->
+        <div class="card fade-in" data-category="digital exhibitions" style="top: 5%; left: 50%;">
+            <img src="image\Ruy-exhibition.jpg" alt="Project 6 Thumb 1">
+            <span class="caption">DIGI-EX-01</span>
+        </div>
+        <div class="card fade-in" data-category="digital exhibitions" style="top: 55%; left: 45%;">
+            <img src="images\a.jpg" alt="Project 6 Thumb 2">
+            <span class="caption">DIGI-EX-02</span>
+        </div>
+        <div class="card fade-in" data-category="digital exhibitions" style="top: 65%; left: 60%;">
+            <img src="images\b.jpg" alt="Project 6 Thumb 3">
+            <span class="caption">DIGI-EX-03</span>
+        </div>
+
+        <!-- Project 7 Cards -->
+        <div class="card fade-in" data-category="physical writings" style="top: 40%; left: 5%;">
+            <img src="images\Project1_00000.png" alt="Project 7 Thumb 1">
+            <span class="caption">PHYS-WR-01</span>
+        </div>
+        <div class="card fade-in" data-category="physical writings" style="top: 25%; left: 80%;">
+            <img src="image\Ruy-exhibition.jpg" alt="Project 7 Thumb 2">
+            <span class="caption">PHYS-WR-02</span>
+        </div>
+        <div class="card fade-in" data-category="physical writings" style="top: 90%; left: 15%;">
+            <img src="images\a.jpg" alt="Project 7 Thumb 3">
+            <span class="caption">PHYS-WR-03</span>
+        </div>
+    </div>
+    
+    <script src="homeGROK.js"></script>
 </body>
-
 </html>
