@@ -52,9 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Add click functionality to cards (optional - for future project pages)
         card.addEventListener('click', () => {
+            const projectId = card.dataset.project;
             const caption = card.querySelector('.caption').textContent;
             console.log(`Clicked on: ${caption}`);
-            // Add navigation logic here when project pages are ready
+            
+            // Navigate to the corresponding project page
+            window.location.href = `${projectId}.html`;
         });
     });
 });
