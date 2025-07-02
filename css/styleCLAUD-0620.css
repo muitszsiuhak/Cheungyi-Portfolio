@@ -16,7 +16,7 @@
 }
 
 .logo-btn img {
-    width: 340px; /* Adjust size as needed */
+    width: 460px; /* Adjust size as needed */
     display: block;
 }
 
@@ -105,7 +105,7 @@
 
 .content {
     width: 71.43%; /* 5/7 */
-    padding: 15px 100px 100px 100px;
+    padding: 15px 290px 100px 290px;
     overflow-y: auto;
     text-align: center;
     font-family: 'Garamond', serif;
@@ -113,6 +113,7 @@
 }
 
 .home-btn {
+    position: fixed;
     font-family: 'Courier New', monospace;
     font-size: 14px;
     color: #9A9A9A;
@@ -120,6 +121,7 @@
     padding: 8px 16px;
     border: 1px solid #9A9A9A;
     transition: all 0.3s ease;
+    background: rgba(255, 246, 239, 0.9);
 }
 
 .home-btn:hover {
@@ -128,7 +130,7 @@
 }
 
 .content img, .content video {
-    max-width: 75%;
+    max-width: 100%;
     margin: 20px auto;
     display: block;
 }
