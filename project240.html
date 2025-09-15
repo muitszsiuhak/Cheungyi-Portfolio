@@ -1,0 +1,343 @@
+<!--ALLICE IN THE WONDERLAND -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CHEUNG YI: Story-Teller</title>
+    <link rel="icon" type="image/png" href="./images/greendot_favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleCLAUD-0620.css">
+    <style>
+        /* Two-column layout for paragraph elements within the content section */
+        .content p:not(.no-columns) {
+            column-count: 2;
+            column-gap: 2rem;
+            column-rule: 1px solid #ccc; /* Optional: adds a dividing line between columns */
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Exclude specific paragraphs from two-column layout, e.g., the category text */
+        .content p:first-of-type {
+            column-count: 1; /* Ensure WRITING / THOERY / POSTHUMANISM stays single-column */
+        }
+
+        /* Ensure images and headings do not break across columns */
+        .content h1,
+        .content h2,
+        .content img {
+            column-span: all; /* Makes these elements span across both columns */
+        }
+
+        /* Responsive design: revert to single column for paragraphs on smaller screens */
+        @media (max-width: 768px) {
+            .content p:not(.no-columns) {
+                column-count: 1; /* Single column for mobile devices */
+            }
+        }
+    </style>
+</head>
+<body class="project">
+    <!-- Fixed Logo Button -->
+    <a href="about.html" class="logo-btn">
+    <img src="image\LOGO-gazpacho.png" alt="Cheung Yi Logo">
+</a>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <nav class="sidebar">
+            <div class="index-header">
+                <span class="year-col">YEAR</span>
+                <span class="project-col">PROJECT</span>
+                <span class="tags-col">TAGS</span>
+            </div>
+            
+            <div class="project-item" data-url="proj1.html">
+                <div class="project-text">
+                    <span class="year-col">2025</span>
+                    <span class="project-col">Taste of the Living</span>
+                    <span class="tags-col">Digital, Physical</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="reel/prj_IDD_reel.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            
+            <div class="project-item" data-url="proj2.html">
+                <div class="project-text">
+                    <span class="year-col">2025</span>
+                    <span class="project-col">Synthetic Skins II</span>
+                    <span class="tags-col">Physical</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj2.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj3.html">
+                <div class="project-text">
+                    <span class="year-col">2025</span>
+                    <span class="project-col">Synthetic Skins I</span>
+                    <span class="tags-col">Physical</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj3.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj4.html">
+                <div class="project-text">
+                    <span class="year-col">2025</span>
+                    <span class="project-col">HybridVeg</span>
+                    <span class="tags-col">Physical</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj4.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj5.html">
+                <div class="project-text">
+                    <span class="year-col">2024</span>
+                    <span class="project-col">PhytoSigns</span>
+                    <span class="tags-col">Branding, Digital, Entrepreneur</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj5.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj6.html">
+                <div class="project-text">
+                    <span class="year-col">2024</span>
+                    <span class="project-col">"Parrot-Lobster-Crab"</span>
+                    <span class="tags-col">Physical, Digital</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj6.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj7.html">
+                <div class="project-text">
+                    <span class="year-col">2024</span>
+                    <span class="project-col">"For the First time: Encountering the enchanting Nature</span>
+                    <span class="tags-col">Exhibition</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj7.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj8.html">
+                <div class="project-text">
+                    <span class="year-col">2024</span>
+                    <span class="project-col">Alice in the wonderland</span>
+                    <span class="tags-col">Writing</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj8.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj9.html">
+                <div class="project-text">
+                    <span class="year-col">2024</span>
+                    <span class="project-col">How to Train Your Dragon</span>
+                    <span class="tags-col">Digital, Physical</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj9.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+             <div class="project-item" data-url="proj9.html">
+                <div class="project-text">
+                    <span class="year-col">2023</span>
+                    <span class="project-col">Alternative Perspectival Speculation</span>
+                    <span class="tags-col">Writing</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj9.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+             <div class="project-item" data-url="proj9.html">
+                <div class="project-text">
+                    <span class="year-col">2024</span>
+                    <span class="project-col">Fiery Prawn</span>
+                    <span class="tags-col">Physical</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj9.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+             <div class="project-item" data-url="proj9.html">
+                <div class="project-text">
+                    <span class="year-col">2024</span>
+                    <span class="project-col">Woods of Splines</span>
+                    <span class="tags-col">Digital</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj9.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+             <div class="project-item" data-url="proj9.html">
+                <div class="project-text">
+                    <span class="year-col">2024</span>
+                    <span class="project-col">Mr Seagull</span>
+                    <span class="tags-col">Writing</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj9.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+             <div class="project-item" data-url="proj9.html">
+                <div class="project-text">
+                    <span class="year-col">2023</span>
+                    <span class="project-col">Up!topia</span>
+                    <span class="tags-col">Digital</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj9.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+             <div class="project-item" data-url="proj9.html">
+                <div class="project-text">
+                    <span class="year-col">2023</span>
+                    <span class="project-col">VloriaXXV</span>
+                    <span class="tags-col">Digital</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj9.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj8.html">
+                <div class="project-text">
+                    <span class="year-col">2023</span>
+                    <span class="project-col">Let's Have Some Jello</span>
+                    <span class="tags-col">Digital</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj8.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj8.html">
+                <div class="project-text">
+                    <span class="year-col">2023</span>
+                    <span class="project-col">Rebel, Reborn, Rehabilitate</span>
+                    <span class="tags-col">Digital, Physical</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj8.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-item" data-url="proj8.html">
+                <div class="project-text">
+                    <span class="year-col">2022</span>
+                    <span class="project-col">Reclaiming Reclaimation</span>
+                    <span class="tags-col">Digital</span>
+                </div>
+                <div class="video-container">
+                    <video class="hidden-video" muted>
+                        <source src="videos/proj8.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Right Content Area -->
+        <main class="content">
+            <!-- Gallery Header and Home Button -->
+            <div class="gallery-header">
+                <a href="index.html" class="home-btn">↰ GALLERY</a>
+            </div>
+            
+            <br><br><br><br><br>
+            <p style="text-align: center;">WRITING / PARAFICTION</p>
+            <h1>'Alice Through the Looking-Glass' </h1>
+            <!-- <h1 style="font-size: 1.5m;">the 100 Adventures Alice set up for herself ' </h1> -->
+            
+            <br>
+            <br>
+            
+            <p style=" font-size:  1.5em; font-style: italic;">"When I look at you, I see a young little girl, living her life being told she's too weird." --D.R."</p>
+            <br>
+            <img src="https://huggingface.co/datasets/muitszsiuhak/Cheungyi-Portfolio-Art/resolve/main/240-A.jpg" alt="Project 1 Image">
+            <p>So, here's how I first made the acquaintance of Alice, when she recounted to me all her even-more-absurd encounters upon returning from the most perplexing realm of the Wonderland...</p>
+            <br>
+            <p>"Oh, but implausibility, my darling, is merely a symptom of insufficient curiosity! Let me see... it began upon a frozen river, a Frost Fair unlike any London has seen, with a great bamboo scaffold Christmas tree rising from the ice. Immense machines slid down rails—gigantic copper brewers puffing spiced mist, a grand dining hall encased within a ten-story Victorian table... gingerbread puppet house that whispered when wind passed through it."</p>
+            <br>
+            <p>“Let me get this straight, Alice. You mean to tell me you had seen singing plants and dancing bamboos, and gave a raddish a fresh haircut..." "...That having braved the preposterous absurdities of Wonderland— you wandered further still, into realms yet more implausible, now what a trout factory that makes motherboards?"</p>
+            <br>
+            <p>"Whispering gingerbread. Preposterous," I mocked.
+
+"I had barely grasped the wonder of it when I found myself at the foot of a crystal tower, its facets shifting, folding like paper origamis. A young loving couple emerged, wreathed in the glow of something unutterable, elevating from one reality into another as if it were no more than a doorway."
+
+"And yet you stand there, utterly unfractured by such disturbances in the laws of physics—"</p>
+            <br>
+            <p>"Physics is but a territorial rulebook, my dear, and the Wonderlands does not abide by its limitations!  I wandered through a forest and intruded the haven of ancient Ammonites, lay curled up, glowing... and elf-like suspended trunks exhaled tiny creatures into the air. A wooden stool, fashioned like a scorpion, scuttled to my side and, finding me sufficiently agreeable, bore me away..."
+
+"So then to where on earth, did this whimsical steed deliver you?" I feigned a semblance of intrigue, inwardly remaining most unconvinced.
+
+"An island woven of synthetic blooms, their iridescence hair swayed with each breath of wind. But the beasts, oh, the beasts! A parrot where its crab legs squirmed, a deer with a body of fluff-filled chestnut, a frog draped in peacock plumage—each a wonder unto itself! And as I marveled, a great machine resembling a water treatment plant, all pipes and pulsing fluid, howled from stories above, leading me toward a conservatory where tunes chimed from potted plants wired with uncanny devices."
+
+"Okay now a botanical orchestra. Don't you try me, Alice—"
+
+"Yet you listen still! But I shall spare you the unraveling of an impossible haunting cathedral and the tentacled beast slumbered within it—for now. What I shall tell you is this: the final thing I saw before I was whisked back to this tiresome realm was a disjoint dragon, with metal bladed scales and bright red glowing eyes, mimicking my every move. I stepped, it stepped. I turned, it turned. I ran—"
+
+And though her heart raced, Alice did not flee.
+
+She had come this far.
+
+And Wonderland—if this world could still be called that—had only just begun to unfold......</p>
+            <br>
+
+        </main>
+    </div>
+
+    <script src="js/prjclaud.js"></script>
+</body>
+</html>
