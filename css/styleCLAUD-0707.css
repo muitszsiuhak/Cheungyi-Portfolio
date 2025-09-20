@@ -34,7 +34,8 @@
 }
 
 .loading-text {
-    font-family: 'Courier New', monospace;
+    font-family: 'Garamond';
+    font-style: italic;
     font-size: 16px;
     color: #583f2bb2;
     letter-spacing: 2px;
