@@ -23,7 +23,6 @@
 .container {
     display: flex;
     margin-top: 0px;
-    height: calc(100vh - 60px);
 }
 
 .sidebar {
@@ -181,8 +180,9 @@ height: auto;
 }
 
 .sidebar {
-overflow-y: auto;
-max-height: none; /* Optional: limits sidebar height on mobile to prevent it dominating the screen; adjust as needed */
+position: static;
+max-height: none; 
+flex: 0 0 auto;/* Optional: limits sidebar height on mobile to prevent it dominating the screen; adjust as needed */
 }
 
 .logo-btn img  {
