@@ -161,7 +161,6 @@ height: auto;
 
 .content,
 .sidebar,
-.content p,
 .content h1,
 .content h2,
 .sidebar .index-header,
@@ -170,6 +169,12 @@ height: auto;
 .sidebar .project-col,
 .sidebar .tags-col {
   font-size: 80%;
+}
+
+.content p {
+  width: clamp(100px, 80%, 600px);
+  text-align: center;
+  margin: 0 auto;
 }
 
 .sidebar {
