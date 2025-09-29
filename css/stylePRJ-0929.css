@@ -162,7 +162,6 @@ height: auto;
 .content,
 .sidebar,
 .content h1,
-.content h2,
 .sidebar .index-header,
 .sidebar .project-text,
 .sidebar .year-col,
@@ -172,9 +171,13 @@ height: auto;
 }
 
 .content p {
-  width: clamp(100px, 80%, 600px);
+  width: clamp(100px, 90%, 600px);
   text-align: center;
   margin: 0 auto;
+}
+
+.content h2 {
+  font-size: 92%;
 }
 
 .sidebar {
