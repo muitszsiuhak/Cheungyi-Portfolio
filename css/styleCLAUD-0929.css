@@ -151,8 +151,8 @@
 }
 
 .card img {
-    width: clamp(80px, 5.21vw, 200px);
-    height: clamp(80px, 5.21vw, 200px);
+    width: clamp(80px, 8vw, 200px);
+    height: clamp(80px, 8vw, 200px);
     object-fit: cover;
     display: block;
 }
