@@ -179,6 +179,15 @@ height: auto;
   font-size: 92%;
 }
 
+.content iframe {
+  width: clamp(100px, 90%, 600px);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  align-content: center;
+}
+
 .sidebar {
 position: static;
 max-height: none; 
