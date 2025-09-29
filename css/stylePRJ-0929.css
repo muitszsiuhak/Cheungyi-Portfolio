@@ -152,14 +152,33 @@ height: auto;
 .gallery-header {
   text-align: left;
   padding-left: 15px;
+  padding-top: 15px;
 }
 .home-btn {
   display: inline-block;
   text-align: left;
 }
 
+.content,
+.sidebar,
+.content p,
+.content h1,
+.content h2,
+.sidebar .index-header,
+.sidebar .project-text,
+.sidebar .year-col,
+.sidebar .project-col,
+.sidebar .tags-col {
+  font-size: 80%;
+}
+
 .sidebar {
 overflow-y: auto;
-max-height: 40vh; /* Optional: limits sidebar height on mobile to prevent it dominating the screen; adjust as needed */
+max-height: none; /* Optional: limits sidebar height on mobile to prevent it dominating the screen; adjust as needed */
 }
+
+.logo-btn img  {
+width: clamp(300px, 12vw, 460px);
+}
+
 }
