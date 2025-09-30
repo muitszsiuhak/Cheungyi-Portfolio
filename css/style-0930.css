@@ -1,6 +1,7 @@
-.landing {
+body, .landing {
     margin: 0;
     overflow: hidden;
+    touch-action: none;
     background-color: #FFF6EF;
     font-family: 'Courier New', monospace;
     min-height: 100vh;
@@ -226,7 +227,7 @@
     .card-cloud {
         width: 200%;
         height: 150vh;
-        padding-top: 20%;
+        padding-top: 15%;
         padding-right: 0;
         padding-bottom: 10px;
         touch-action: pan-x pan-y;

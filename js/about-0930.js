@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let targetCloudX = 0;
     let targetCloudY = 0;
     
-    // Image preloading with proper error handling
+    // FIXED: Image preloading with proper error handling
     let loadedImages = 0;
     const totalImages = cards.length;
     const imagePromises = [];
@@ -36,11 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 resolve();
             };
             preloadImg.onerror = () => {
+                // Count failed images as loaded to prevent getting stuck
                 loadedImages++;
                 const progress = (loadedImages / totalImages) * 100;
                 loadingProgress.style.width = progress + '%';
                 console.warn('Failed to load image:', imageUrl);
-                resolve();
+                resolve(); // Resolve anyway to prevent blocking
             };
             preloadImg.src = imageUrl;
         });
@@ -48,25 +49,27 @@ document.addEventListener('DOMContentLoaded', () => {
         imagePromises.push(imagePromise);
     });
     
-    // Wait for all images to load
+    // FIXED: Wait for all images to load with guaranteed progression
     Promise.all(imagePromises).then(() => {
+        // Small delay to ensure smooth transition
         setTimeout(() => {
             startStarShootingAnimation();
         }, 500);
     }).catch((error) => {
         console.error('Error loading images:', error);
+        // Start animation anyway after timeout
         setTimeout(() => {
             startStarShootingAnimation();
         }, 500);
     });
     
-    // Safety timeout to prevent infinite loading
+    // Add a safety timeout to prevent infinite loading
     setTimeout(() => {
         if (loadingScreen.style.display !== 'none') {
             console.warn('Loading timeout - forcing start of animation');
             startStarShootingAnimation();
         }
-    }, 8000);
+    }, 8000); // 8 second safety timeout
     
     function startStarShootingAnimation() {
         // Hide loading screen
@@ -84,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.zIndex = Math.floor(depth * 10);
             
             // Group by depth ranges
-            const depthLayer = Math.floor(depth * 3);
+            const depthLayer = Math.floor(depth * 3); // 0, 1, 2
             if (!cardsByDepth[depthLayer]) {
                 cardsByDepth[depthLayer] = [];
             }
@@ -94,34 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.opacity = '0';
             card.style.transform = 'translate(-50vw, -50vh) scale(0.1)';
             card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            
-            // Adjust card position to avoid logo, filter buttons, and bottom edge
-            let top = parseFloat(card.style.top) || 0;
-            let left = parseFloat(card.style.left) || 0;
-            const isMobile = window.innerWidth <= 768;
-            
-            // Define safe zones
-            const safeZoneTop = isMobile ? 10 : 10; // Match padding-top
-            const safeZoneLeft = isMobile ? 50 : 60;
-            const maxTop = 80; // Cap top position to keep cards accessible
-            const maxLeft = isMobile ? 140 : 90; // Account for 150% canvas width on mobile
-            
-            // Cap top position
-            top = Math.min(top, maxTop);
-            
-            if (top <= safeZoneTop && left >= safeZoneLeft) {
-                // Shift cards out of the top-right safe zone
-                top = Math.max(top, safeZoneTop + 5);
-                left = Math.min(left, safeZoneLeft - 10);
-                card.style.top = `${top}%`;
-                card.style.left = `${left}%`;
-            } else if (!card.style.top || !card.style.left) {
-                // Assign random position for cards without inline styles
-                top = Math.random() * (maxTop - safeZoneTop) + safeZoneTop;
-                left = Math.random() * (maxLeft - 10);
-                card.style.top = `${top}%`;
-                card.style.left = `${left}%`;
-            }
         });
         
         // Animate cards layer by layer
@@ -129,53 +104,74 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 cardsByDepth[layer].forEach((card, cardIndex) => {
                     setTimeout(() => {
+                        // Get original position
+                        const originalTop = card.style.top;
+                        const originalLeft = card.style.left;
+                        
+                        // Animate to original position
                         card.style.opacity = '0.45';
                         card.style.transform = 'translate(0, 0) scale(1)';
                         
+                        // Add a subtle bounce effect
                         setTimeout(() => {
                             card.style.transform = 'translate(0, 0) scale(1.05)';
                             setTimeout(() => {
                                 card.style.transform = 'translate(0, 0) scale(1)';
                             }, 100);
                         }, 600);
-                    }, cardIndex * 100);
+                        
+                    }, cardIndex * 100); // Stagger within layer
                 });
-            }, layerIndex * 400);
+            }, layerIndex * 400); // Delay between layers
         });
         
-        // Start spatial effects
+        // Start the spatial effects after animation completes
         setTimeout(() => {
             initializeSpatialEffects();
         }, 2000);
     }
     
     function initializeSpatialEffects() {
+        // Mouse tracking for spatial effect
         document.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
             mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
             
             if (!isDragging) {
+                // Subtle mouse following effect
                 targetCloudX = mouseX * 8;
                 targetCloudY = mouseY * 8;
             }
         });
         
+        // Start animation loop
         animate();
         
+        // Initialize drag functionality
         initializeDragFunctionality();
+        
+        // Initialize hover functionality
         initializeHoverFunctionality();
     }
     
+    // Smooth animation loop for spatial effect
     function animate() {
+        // Smooth interpolation towards target position
         cloudX += (targetCloudX - cloudX) * 0.05;
         cloudY += (targetCloudY - cloudY) * 0.05;
         
+        // Apply layered parallax to individual cards
         cards.forEach((card, index) => {
             const depth = parseFloat(card.dataset.depth);
+            
+            // Each card moves at different speed based on its depth
             const cardMouseX = mouseX * 15 * depth;
             const cardMouseY = mouseY * 15 * depth;
+            
+            // Add subtle rotation for more spatial feel
             const rotation = (mouseX * depth * 2) + (mouseY * depth * 1);
             
+            // Apply transform - include scale when hovering
             if (card.matches(':hover')) {
                 card.style.transform = `translate(${cardMouseX}px, ${cardMouseY}px) rotate(${rotation}deg) scale(1.1)`;
             } else {
@@ -183,13 +179,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
+        // Apply cloud-wide transform
         cardCloud.style.transform = `translate(${cloudX}px, ${cloudY}px)`;
         
         requestAnimationFrame(animate);
     }
     
+    // Drag functionality
     function initializeDragFunctionality() {
-        // Mouse drag
         cardCloud.addEventListener('mousedown', (e) => {
             if (!e.target.closest('.card')) {
                 isDragging = true;
@@ -204,6 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isDragging) {
                 targetCloudX = cloudX = e.clientX - dragStartX;
                 targetCloudY = cloudY = e.clientY - dragStartY;
+                
+                // Limit the drag range
                 const maxDrag = 200;
                 targetCloudX = Math.max(-maxDrag, Math.min(maxDrag, targetCloudX));
                 targetCloudY = Math.max(-maxDrag, Math.min(maxDrag, targetCloudY));
@@ -216,46 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardCloud.classList.remove('dragging');
             }
         });
-
-        // Touch drag (two-finger panning)
-        cardCloud.addEventListener('touchstart', (e) => {
-            if (e.target.closest('.card')) return;
-            if (e.touches.length === 2) {
-                isDragging = true;
-                const touch1 = e.touches[0];
-                const touch2 = e.touches[1];
-                const avgX = (touch1.clientX + touch2.clientX) / 2;
-                const avgY = (touch1.clientY + touch2.clientY) / 2;
-                dragStartX = avgX - cloudX;
-                dragStartY = avgY - cloudY;
-                cardCloud.classList.add('dragging');
-                e.preventDefault();
-            }
-        });
-
-        document.addEventListener('touchmove', (e) => {
-            if (isDragging && e.touches.length === 2) {
-                const touch1 = e.touches[0];
-                const touch2 = e.touches[1];
-                const avgX = (touch1.clientX + touch2.clientX) / 2;
-                const avgY = (touch1.clientY + touch2.clientY) / 2;
-                targetCloudX = cloudX = avgX - dragStartX;
-                targetCloudY = cloudY = avgY - dragStartY;
-                const maxDrag = 200;
-                targetCloudX = Math.max(-maxDrag, Math.min(maxDrag, targetCloudX));
-                targetCloudY = Math.max(-maxDrag, Math.min(maxDrag, targetCloudY));
-                e.preventDefault();
-            }
-        });
-
-        document.addEventListener('touchend', () => {
-            if (isDragging) {
-                isDragging = false;
-                cardCloud.classList.remove('dragging');
-            }
-        });
     }
     
+    // Hover functionality for project grouping
     function initializeHoverFunctionality() {
         cards.forEach(card => {
             card.addEventListener('mouseenter', () => {
@@ -276,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            // Add click functionality to cards
             card.addEventListener('click', () => {
                 const projectId = card.dataset.project;
                 const caption = card.querySelector('.caption').textContent;
