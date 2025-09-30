@@ -190,7 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function initializeDragFunctionality() {
         const isMobile = window.innerWidth <= 768;
-        const maxDrag = isMobile ? window.innerWidth * 2 : 200; // Allow more panning on mobile
+        const maxDrag = isMobile ? window.innerWidth : 200; // Allow panning to canvas edges on mobile
+        // Center canvas on mobile: shift left by (canvasWidth - viewportWidth) / 2
+        cloudX = isMobile ? -(window.innerWidth * 2 - window.innerWidth) / 2 : 0;
+        targetCloudX = cloudX;
+        cardCloud.style.transform = `translate(${cloudX}px, ${cloudY}px)`;
 
         // Mouse drag
         cardCloud.addEventListener('mousedown', (e) => {
