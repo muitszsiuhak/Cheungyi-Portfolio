@@ -3,7 +3,8 @@
     overflow: hidden;
     background-color: #FFF6EF;
     font-family: 'Courier New', monospace;
-    height: 100vh;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 /* Loading Screen Styles */
@@ -95,6 +96,8 @@
     transition: all 0.3s ease;
     text-align: center;
     min-width: 120px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .filter-btn:hover {
@@ -124,12 +127,15 @@
 .card-cloud {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     z-index: 2;
     transition: transform 0.1s ease-out;
     cursor: grab;
-    padding-top: 20%; /* Reserve space for logo and filter buttons */
-    padding-right: 500px; /* Reserve space for logo (460px) + filter buttons (120px) + margin */
+    padding-top: 10%;
+    padding-right: 480px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    touch-action: pan-y;
 }
 
 .card-cloud.dragging {
@@ -219,8 +225,8 @@
     }
     
     .card-cloud {
-        padding-top: 20%;
-        padding-right: 100px; /* Reserve space for logo (250px) + filter buttons (100px) + margin */
+        padding-top: 15%;
+        padding-right: 270px;
         padding-bottom: 10px;
     }
 }

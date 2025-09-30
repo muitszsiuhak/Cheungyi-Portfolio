@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let targetCloudX = 0;
     let targetCloudY = 0;
     
-    // FIXED: Image preloading with proper error handling
+    // Image preloading with proper error handling
     let loadedImages = 0;
     const totalImages = cards.length;
     const imagePromises = [];
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imagePromises.push(imagePromise);
     });
     
-    // FIXED: Wait for all images to load with guaranteed progression
+    // Wait for all images to load
     Promise.all(imagePromises).then(() => {
         setTimeout(() => {
             startStarShootingAnimation();
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     });
     
-    // Add a safety timeout to prevent infinite loading
+    // Safety timeout to prevent infinite loading
     setTimeout(() => {
         if (loadingScreen.style.display !== 'none') {
             console.warn('Loading timeout - forcing start of animation');
@@ -95,19 +95,29 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = 'translate(-50vw, -50vh) scale(0.1)';
             card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             
-            // Adjust card position to avoid logo and filter buttons
+            // Adjust card position to avoid logo, filter buttons, and bottom edge
             let top = parseFloat(card.style.top) || 0;
             let left = parseFloat(card.style.left) || 0;
             const isMobile = window.innerWidth <= 768;
             
             // Define safe zones
-            const safeZoneTop = isMobile ? 20 : 20; // 20% of viewport height
-            const safeZoneLeft = isMobile ? 50 : 60; // 50% (mobile) or 60% (desktop) from left
+            const safeZoneTop = isMobile ? 15 : 10; // Match padding-top
+            const safeZoneLeft = isMobile ? 50 : 60;
+            const maxTop = 80; // Cap top position to keep cards visible
+            
+            // Cap top position
+            top = Math.min(top, maxTop);
             
             if (top <= safeZoneTop && left >= safeZoneLeft) {
                 // Shift cards out of the top-right safe zone
-                top = Math.max(top, safeZoneTop + 5); // Move below safe zone
-                left = Math.min(left, safeZoneLeft - 10); // Move left of safe zone
+                top = Math.max(top, safeZoneTop + 5);
+                left = Math.min(left, safeZoneLeft - 10);
+                card.style.top = `${top}%`;
+                card.style.left = `${left}%`;
+            } else if (!card.style.top || !card.style.left) {
+                // Assign random position for cards without inline styles
+                top = Math.random() * (maxTop - safeZoneTop) + safeZoneTop;
+                left = Math.random() * (safeZoneLeft - 10);
                 card.style.top = `${top}%`;
                 card.style.left = `${left}%`;
             }
@@ -118,28 +128,21 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 cardsByDepth[layer].forEach((card, cardIndex) => {
                     setTimeout(() => {
-                        // Get adjusted position
-                        const originalTop = card.style.top;
-                        const originalLeft = card.style.left;
-                        
-                        // Animate to adjusted position
                         card.style.opacity = '0.45';
                         card.style.transform = 'translate(0, 0) scale(1)';
                         
-                        // Add a subtle bounce effect
                         setTimeout(() => {
                             card.style.transform = 'translate(0, 0) scale(1.05)';
                             setTimeout(() => {
                                 card.style.transform = 'translate(0, 0) scale(1)';
                             }, 100);
                         }, 600);
-                        
                     }, cardIndex * 100);
                 });
             }, layerIndex * 400);
         });
         
-        // Start the spatial effects after animation completes
+        // Start spatial effects
         setTimeout(() => {
             initializeSpatialEffects();
         }, 2000);
@@ -159,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
         
         initializeDragFunctionality();
-        initializeFilterFunctionality();
         initializeHoverFunctionality();
     }
     
@@ -211,27 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 isDragging = false;
                 cardCloud.classList.remove('dragging');
             }
-        });
-    }
-    
-    function initializeFilterFunctionality() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const category = button.dataset.filter;
-                
-                cards.forEach(card => {
-                    const cardCategories = card.dataset.category.split(' ');
-                    if (category === 'all' || cardCategories.includes(category)) {
-                        card.classList.remove('filtered-out');
-                    } else {
-                        card.classList.add('filtered-out');
-                    }
-                });
-                
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-            });
         });
     }
     
