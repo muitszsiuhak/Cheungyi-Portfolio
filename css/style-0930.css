@@ -1,7 +1,7 @@
 body, .landing {
     margin: 0;
     overflow: hidden;
-    touch-action: none;
+    touch-action: pan-x pan-y;
     background-color: #FFF6EF;
     font-family: 'Courier New', monospace;
     min-height: 100vh;
