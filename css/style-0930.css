@@ -219,7 +219,8 @@
     }
     
     .card-cloud {
-        padding-top: 10%;
+        padding-top: 20%;
         padding-right: 100px; /* Reserve space for logo (250px) + filter buttons (100px) + margin */
+        padding-bottom: 10px;
     }
 }
