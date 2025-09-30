@@ -1,0 +1,225 @@
+.landing {
+    margin: 0;
+    overflow: hidden;
+    background-color: #FFF6EF;
+    font-family: 'Courier New', monospace;
+    height: 100vh;
+}
+
+/* Loading Screen Styles */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF6EF;
+    background-image: url('https://huggingface.co/datasets/muitszsiuhak/Cheungyi-Portfolio-Art/resolve/main/BG01-02.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.loading-text {
+    font-family: 'Garamond';
+    font-style: italic;
+    font-size: 16px;
+    color: #583f2bb2;
+    letter-spacing: 2px;
+}
+
+.loading-bar {
+    width: 300px;
+    height: 4px;
+    background-color: rgba(88, 63, 43, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-progress {
+    height: 100%;
+    background-color: #583f2bb2;
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.logo-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: transparent;
+    padding-right: 2ch;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.logo-btn img {
+    width: 460px;
+    display: block;
+}
+
+.filter-buttons {
+    position: fixed;
+    top: 120px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-btn {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #9A9A9A;
+    background: none;
+    border: 1px solid #9A9A9A;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 120px;
+}
+
+.filter-btn:hover {
+    background-color: #9A9A9A;
+    color: #FFF6EF;
+}
+
+.filter-btn.active {
+    background-color: #333;
+    color: #FFF6EF;
+    border-color: #333;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://huggingface.co/datasets/muitszsiuhak/Cheungyi-Portfolio-Art/resolve/main/BG01-02.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.card-cloud {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    transition: transform 0.1s ease-out;
+    cursor: grab;
+    padding-top: 20%; /* Reserve space for logo and filter buttons */
+    padding-right: 500px; /* Reserve space for logo (460px) + filter buttons (120px) + margin */
+}
+
+.card-cloud.dragging {
+    cursor: grabbing;
+    transition: none;
+}
+
+.card {
+    position: absolute;
+    border: 2px solid #fff;
+    overflow: hidden;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    will-change: transform;
+}
+
+.card.fade-in {
+    opacity: 0.45;
+}
+
+.card img {
+    width: clamp(80px, 8vw, 200px);
+    height: clamp(80px, 8vw, 200px);
+    object-fit: cover;
+    display: block;
+}
+
+.caption {
+    display: block;
+    text-align: left;
+    color: #583f2bb2;
+    background: rgb(245, 240, 237);
+    padding: clamp(4px, 0.42vw, 8px);
+    font-size: clamp(8px, 0.625vw, 12px);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.card:hover {
+    transform: scale(1.2) !important;
+    z-index: 10;
+    opacity: 1 !important;
+}
+
+.card.project-highlighted {
+    opacity: 1 !important;
+}
+
+.card.filtered-out {
+    opacity: 0.2;
+    transform: scale(0.9);
+}
+
+.card.filtered-out.project-highlighted {
+    opacity: 0.2;
+}
+
+.card:not(.filtered-out).project-highlighted {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-btn img {
+        width: 250px;
+    }
+    
+    .filter-buttons {
+        top: 90px;
+        right: 15px;
+    }
+    
+    .filter-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+        min-width: 100px;
+    }
+    
+    .loading-bar {
+        width: 250px;
+    }
+    
+    .loading-text {
+        font-size: 14px;
+    }
+    
+    .card-cloud {
+        padding-top: 10%;
+        padding-right: 100px; /* Reserve space for logo (250px) + filter buttons (100px) + margin */
+    }
+}
