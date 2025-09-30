@@ -101,9 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const isMobile = window.innerWidth <= 768;
             
             // Define safe zones
-            const safeZoneTop = isMobile ? 15 : 10; // Match padding-top
+            const safeZoneTop = isMobile ? 10 : 10; // Match padding-top
             const safeZoneLeft = isMobile ? 50 : 60;
-            const maxTop = 80; // Cap top position to keep cards visible
+            const maxTop = 80; // Cap top position to keep cards accessible
+            const maxLeft = isMobile ? 140 : 90; // Account for 150% canvas width on mobile
             
             // Cap top position
             top = Math.min(top, maxTop);
@@ -117,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (!card.style.top || !card.style.left) {
                 // Assign random position for cards without inline styles
                 top = Math.random() * (maxTop - safeZoneTop) + safeZoneTop;
-                left = Math.random() * (safeZoneLeft - 10);
+                left = Math.random() * (maxLeft - 10);
                 card.style.top = `${top}%`;
                 card.style.left = `${left}%`;
             }
@@ -188,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function initializeDragFunctionality() {
+        // Mouse drag
         cardCloud.addEventListener('mousedown', (e) => {
             if (!e.target.closest('.card')) {
                 isDragging = true;
@@ -209,6 +211,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                cardCloud.classList.remove('dragging');
+            }
+        });
+
+        // Touch drag (two-finger panning)
+        cardCloud.addEventListener('touchstart', (e) => {
+            if (e.target.closest('.card')) return;
+            if (e.touches.length === 2) {
+                isDragging = true;
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const avgX = (touch1.clientX + touch2.clientX) / 2;
+                const avgY = (touch1.clientY + touch2.clientY) / 2;
+                dragStartX = avgX - cloudX;
+                dragStartY = avgY - cloudY;
+                cardCloud.classList.add('dragging');
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging && e.touches.length === 2) {
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const avgX = (touch1.clientX + touch2.clientX) / 2;
+                const avgY = (touch1.clientY + touch2.clientY) / 2;
+                targetCloudX = cloudX = avgX - dragStartX;
+                targetCloudY = cloudY = avgY - dragStartY;
+                const maxDrag = 200;
+                targetCloudX = Math.max(-maxDrag, Math.min(maxDrag, targetCloudX));
+                targetCloudY = Math.max(-maxDrag, Math.min(maxDrag, targetCloudY));
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('touchend', () => {
             if (isDragging) {
                 isDragging = false;
                 cardCloud.classList.remove('dragging');
