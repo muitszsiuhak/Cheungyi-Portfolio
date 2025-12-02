@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Gallery – Taubman Portfolio</title>
+  <link rel="stylesheet" href="portfo.css" />
+</head>
+<body>
+  <div class="gallery-wrapper">
+    <!-- Main Preview – now starts with the first image so it never appears broken -->
+    <div class="gallery-main">
+      <img id="mainImage" 
+           src="portfo-taubman/Taubman-1.png" 
+           alt="Project 1" />
+    </div>
+
+    <div class="thumbnail active" data-src="portfo-taubman/Taubman-1.png">
+      <img src="portfo-taubman/Taubman-1.png" alt="Project 1">
+    </div>
+    <div class="thumbnail" data-src="portfo-taubman/Taubman-2.png">
+     <img src="portfo-taubman/Taubman-2.png" alt="Project 2">
+</div>
+  </div>
+
+  <script src="portfo.js"></script>
+</body>
+</html>

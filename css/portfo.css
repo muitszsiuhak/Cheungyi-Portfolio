@@ -1,0 +1,64 @@
+/* portfo.css – same as before, only tiny improvement */
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f7f7f7;
+  padding: 40px 0;
+}
+
+.gallery-wrapper { width: 80vw; max-width: 100%; margin: 0 auto; }
+
+.gallery-main {
+  width: 100%;
+  aspect-ratio: 899 / 508;
+  background: #000;
+  overflow: hidden;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.gallery-main img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  gap: 8px;
+}
+
+.thumbnail {
+  aspect-ratio: 899 / 508;
+  width: 100%;
+  cursor: pointer;                /* ADD THIS */
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  border: none;                   /* you can keep or remove */
+  background: none;               /* you can keep or remove */
+  padding: 0;
+}
+
+.thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+
+.thumbnail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.6);
+  transition: background .25s;
+  pointer-events: none;
+}
+
+.thumbnail:hover::after { background: rgba(255,255,255,0.4); }
+.thumbnail.active::after { background: transparent; }
+.thumbnail.active { outline: 3px solid #1e6be3; outline-offset: -1px; }

@@ -1,0 +1,95 @@
+import os
+import time
+import platform
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+import win32print
+import win32ui
+from PIL import Image
+import subprocess
+
+# Configuration
+SCREENSHOT_FOLDER = "C:/Users/YourUsername/Pictures/Screenshots"  # Update this path
+PRINTER_NAME = None  # Set to None to use default printer, or specify printer name
+
+class ScreenshotHandler(FileSystemEventHandler):
+    def on_created(self, event):
+        if event.is_directory:
+            return
+        file_path = event.src_path
+        # Check if the file is an image
+        if file_path.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp')):
+            print(f"New image detected: {file_path}")
+            # Wait briefly to ensure the file is fully written
+            time.sleep(1)
+            self.print_image(file_path)
+
+    def print_image(self, file_path):
+        system = platform.system()
+        try:
+            if system == "Windows":
+                self.print_image_windows(file_path)
+            elif system in ["Linux", "Darwin"]:
+                self.print_image_unix(file_path)
+            else:
+                print("Unsupported operating system")
+        except Exception as e:
+            print(f"Error printing {file_path}: {e}")
+
+    def print_image_windows(self, file_path):
+        # Open the image
+        image = Image.open(file_path)
+        # Get the default printer or specified printer
+        printer_name = PRINTER_NAME or win32print.GetDefaultPrinter()
+        # Create a device context for the printer
+        hdc = win32ui.CreateDC()
+        hdc.CreatePrinterDC(printer_name)
+        hdc.StartDoc(file_path)
+        hdc.StartPage()
+        # Get image dimensions
+        img_width, img_height = image.size
+        # Scale image to fit printer page (assuming 96 DPI for simplicity)
+        hdc_width = hdc.GetDeviceCaps(8)  # Physical width in pixels
+        hdc_height = hdc.GetDeviceCaps(10)  # Physical height in pixels
+        scale = min(hdc_width / img_width, hdc_height / img_height)
+        new_width = int(img_width * scale)
+        new_height = int(img_height * scale)
+        # Convert image to bitmap
+        image = image.resize((new_width, new_height), Image.Resampling.LANCZOS)
+        dib = Image.Win32DIB(image)
+        # Draw the image
+        dib.draw(hdc.GetHandleOutput(), (0, 0, new_width, new_height))
+        hdc.EndPage()
+        hdc.EndDoc()
+        hdc.DeleteDC()
+        print(f"Printed {file_path} on {printer_name}")
+
+    def print_image_unix(self, file_path):
+        # Use lpr command to print the image
+        cmd = ["lpr", file_path]
+        if PRINTER_NAME:
+            cmd.extend(["-P", PRINTER_NAME])
+        subprocess.run(cmd, check=True)
+        print(f"Printed {file_path} using lpr")
+
+def main():
+    # Verify the screenshot folder exists
+    if not os.path.exists(SCREENSHOT_FOLDER):
+        print(f"Screenshot folder {SCREENSHOT_FOLDER} does not exist")
+        return
+
+    print(f"Monitoring {SCREENSHOT_FOLDER} for new screenshots...")
+    # Set up the observer
+    event_handler = ScreenshotHandler()
+    observer = Observer()
+    observer.schedule(event_handler, SCREENSHOT_FOLDER, recursive=False)
+    observer.start()
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()
+
+if __name__ == "__main__":
+    main()
